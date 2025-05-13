@@ -787,6 +787,61 @@
                         <!-- ROW-2 -->
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
+                                <div class="card shadow-sm mt-4">
+                                    <div class="card-header bg-danger text-white ">
+                                        <h5 class="mb-0"><i class="fas fa-calculator me-2 text-end"></i>ماشین حساب </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" class="form-control mb-3 text-end" id="calcDisplay" readonly>
+                                        <div class="row g-2">
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">7</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">8</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">9</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-success w-100 calc-btn">/</button></div>
+                                            
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">4</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">5</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">6</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-success w-100 calc-btn">*</button></div>
+                                            
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">1</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">2</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">3</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-success w-100 calc-btn">-</button></div>
+                                            
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">0</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-danger w-100 calc-btn">.</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-success w-100 calc-btn">=</button></div>
+                                            <div class="col-3"><button class="btn btn-outline-success w-100 calc-btn">+</button></div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <button class="btn btn-outline-danger w-100 calc-btn" id="clearAll">پاک کردن همه</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    document.querySelectorAll('.calc-btn').forEach(btn => {
+                                        btn.addEventListener('click', function() {
+                                            const display = document.getElementById('calcDisplay');
+                                            
+                                            if (this.textContent === 'پاک کردن همه') {
+                                                display.value = '';
+                                            } else if (this.textContent === '=') {
+                                                try {
+                                                    display.value = eval(display.value);
+                                                } catch {
+                                                    display.value = 'Error';
+                                                }
+                                            } else {
+                                                display.value += this.textContent;
+                                            }
+                                        });
+                                    });
+                                </script>
+                                
                             </div> -->
                         </div>
                         <!-- ROW-2 END -->
