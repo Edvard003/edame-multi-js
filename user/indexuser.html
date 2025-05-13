@@ -74,7 +74,89 @@
 						<!-- about -->
 						<div id="about" class="tab-pane fade in active">
 							<h3>بیوگرافی</h3>
+							<div class="card shadow-sm mt-4">
+								<div class="card-header bg-info text-white">
+									<h5 class="mb-0"><i class="fas fa-edit me-2"></i>فرم اطلاعات کاربری</h5>
+								</div>
+								<div class="card-body">
+									<form id="userForm" novalidate>
+										<div class="mb-3">
+											<label class="form-label">نام  <span class="text-danger">*</span></label>
+											<input type="text" class="form-control" id="fullName" required>
+											<div class="text-danger mt-1" style="display:none;font-size:0.8rem" id="nameError">لطفاً نام خود را وارد کنید</div>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label">فامیل  <span class="text-danger">*</span></label>
+											<input type="text" class="form-control" id="fullName" required>
+											<div class="text-danger mt-1" style="display:none;font-size:0.8rem" id="nameError">لطفاً فامیل خود را وارد کنید</div>
+										</div>
+										
+										<div class="mb-3">
+											<label class="form-label">ایمیل <span class="text-danger">*</span></label>
+											<input type="email" class="form-control" id="email" required>
+											<div class="text-danger mt-1" style="display:none;font-size:0.8rem" id="emailError">لطفاً ایمیل معتبر وارد کنید</div>
+										</div>
+										
+										<div class="mb-3">
+											<label class="form-label">شماره تماس <span class="text-danger">*</span></label>
+											<input type="tel" class="form-control" id="phone" required>
+											<div class="text-danger mt-1" style="display:none;font-size:0.8rem" id="phoneError">لطفاً شماره تماس وارد کنید</div>
+										</div>
+										
+										<div class="d-grid gap-2">
+											<button type="submit" class="btn btn-primary">
+												<i class="fas fa-paper-plane me-2"></i> ارسال اطلاعات
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
 							
+							<script>
+								document.getElementById('userForm').addEventListener('submit', function(e) {
+									e.preventDefault();
+									let isValid = true;
+									
+									// Reset previous errors
+									document.querySelectorAll('.form-control').forEach(input => {
+										input.style.borderColor = '#ced4da';
+									});
+									document.querySelectorAll('.text-danger').forEach(error => {
+										error.style.display = 'none';
+									});
+									
+									// Validate name
+									const nameInput = document.getElementById('fullName');
+									if (!nameInput.value.trim()) {
+										nameInput.style.borderColor = 'red';
+										document.getElementById('nameError').style.display = 'block';
+										isValid = false;
+									}
+									
+									// Validate email
+									const emailInput = document.getElementById('email');
+									if (!emailInput.value.trim() || !emailInput.checkValidity()) {
+										emailInput.style.borderColor = 'red';
+										document.getElementById('emailError').style.display = 'block';
+										isValid = false;
+									}
+									
+									// Validate phone
+									const phoneInput = document.getElementById('phone');
+									if (!phoneInput.value.trim()) {
+										phoneInput.style.borderColor = 'red';
+										document.getElementById('phoneError').style.display = 'block';
+										isValid = false;
+									}
+									
+									if (isValid) {
+										alert('فرم با موفقیت ارسال شد!');
+										// Submit form or redirect
+										window.location.href = "success.html";
+									}
+								});
+							</script>
 							
 						</div>
 						<!-- adventures and blog -->
